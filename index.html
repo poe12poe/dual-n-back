@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双N脑力训练</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="top-bar">
+        <h1>双N脑力训练</h1>
+        <div class="top-actions">
+            <button class="icon-btn" id="stats-toggle" title="统计">📊</button>
+            <button class="icon-btn" id="theme-toggle" title="切换主题">🌙</button>
+            <button class="icon-btn" id="settings-toggle" title="设置">⚙</button>
+        </div>
+    </div>
+
+    <!-- 主游戏区域 -->
+    <div class="main-container">
+        <div class="canvas-wrapper">
+            <canvas id="game-canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- 设置面板 -->
+    <div class="settings-panel" id="settings-panel">
+        <h3>游戏设置</h3>
+        <div class="setting-group">
+            <label for="set-nback">起始 N-Back 级别</label>
+            <input type="number" id="set-nback" min="1" max="20" value="2">
+        </div>
+        <div class="setting-group checkbox">
+            <input type="checkbox" id="set-independent-nback">
+            <label for="set-independent-nback">位置和声音独立 N 级别</label>
+        </div>
+        <div class="setting-group" id="group-nback-pos" style="display:none">
+            <label for="set-nback-pos">位置 N-Back</label>
+            <input type="number" id="set-nback-pos" min="1" max="20" value="2">
+        </div>
+        <div class="setting-group" id="group-nback-audio" style="display:none">
+            <label for="set-nback-audio">声音 N-Back</label>
+            <input type="number" id="set-nback-audio" min="1" max="20" value="3">
+        </div>
+        <div class="setting-group">
+            <label for="set-trials">基础 Trial 数</label>
+            <input type="number" id="set-trials" min="5" max="50" value="20">
+        </div>
+        <div class="setting-group">
+            <label for="set-ticks">Trial 时长 (×0.1秒)</label>
+            <input type="number" id="set-ticks" min="10" max="60" value="30" title="默认30=3秒">
+        </div>
+        <div class="setting-group checkbox">
+            <input type="checkbox" id="set-jaeggi">
+            <label for="set-jaeggi">Jaeggi 研究模式</label>
+        </div>
+        <div class="setting-group checkbox">
+            <input type="checkbox" id="set-animate" checked>
+            <label for="set-animate">刺激方块动画</label>
+        </div>
+        <div class="setting-group checkbox">
+            <input type="checkbox" id="set-feedback" checked>
+            <label for="set-feedback">显示反馈</label>
+        </div>
+        <div class="setting-group checkbox">
+            <input type="checkbox" id="set-gridlines" checked>
+            <label for="set-gridlines">显示网格线</label>
+        </div>
+        <div class="setting-group checkbox">
+            <input type="checkbox" id="set-crosshairs" checked>
+            <label for="set-crosshairs">显示十字准星</label>
+        </div>
+        <div class="settings-actions">
+            <button class="btn-primary" id="btn-save-settings">保存</button>
+            <button class="btn-secondary" id="btn-reset-settings">重置</button>
+        </div>
+    </div>
+
+    <!-- 统计面板 -->
+    <div class="stats-panel" id="stats-panel"></div>
+
+    <!-- 结果摘要 -->
+    <div class="summary-panel" id="summary-panel"></div>
+
+    <!-- JS 模块 -->
+    <script src="js/config.js"></script>
+    <script src="js/stimuli.js"></script>
+    <script src="js/scorer.js"></script>
+    <script src="js/sound-data.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/game-core.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
