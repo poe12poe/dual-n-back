@@ -74,7 +74,7 @@ async function init() {
     const canvas = document.getElementById('game-canvas');
     if (!canvas) return;
 
-    canvas.addEventListener('pointerdown', (e) => {
+    canvas.addEventListener('mousedown', (e) => {
         AudioEngine.resume();
 
         if (GameCore.getState() === STATE.IDLE) {
@@ -85,10 +85,9 @@ async function init() {
         }
         if (GameCore.getState() !== STATE.RUNNING) return;
 
-        // e.buttons: 1=左键按下  2=右键按下  3=双键同时
-        const b = e.buttons;
-        if (b & 1) GameCore.handleMousePosition();
-        if (b & 2) GameCore.handleMouseAudio();
+        // e.button: 0=左键  2=右键，各自独立事件，同时按也能分别触发
+        if (e.button === 0) GameCore.handleMousePosition();
+        if (e.button === 2) GameCore.handleMouseAudio();
     });
     canvas.addEventListener('contextmenu', (e) => e.preventDefault());
 

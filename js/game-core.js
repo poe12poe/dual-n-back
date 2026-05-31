@@ -172,7 +172,7 @@ const GameCore = {
         if (ti < (this._sessionNPos ?? this.nBackPos)) return;
 
         const match = this.sequence[ti]?.positionMatch || false;
-        AudioEngine.playFeedback(match ? 'correct' : 'wrong');
+        AudioEngine.playFeedback(match ? 'correct' : 'wrong', 'position');
         Renderer.showDimFeedback('position', match ? 'correct' : 'wrong');
     },
 
@@ -187,7 +187,7 @@ const GameCore = {
         if (ti < (this._sessionNAudio ?? this.nBackAudio)) return;
 
         const match = this.sequence[ti]?.audioMatch || false;
-        AudioEngine.playFeedback(match ? 'correct' : 'wrong');
+        AudioEngine.playFeedback(match ? 'correct' : 'wrong', 'audio');
         Renderer.showDimFeedback('audio', match ? 'correct' : 'wrong');
     },
 
@@ -308,11 +308,11 @@ const GameCore = {
         const nAudio = this._sessionNAudio ?? this.nBackAudio;
         const stim = this.sequence[ti];
         if (stim && ti >= nPos && !this._posPressed && stim.positionMatch) {
-            AudioEngine.playFeedback('wrong');
+            AudioEngine.playFeedback('wrong', 'position');
             Renderer.showDimFeedback('position', 'wrong');
         }
         if (stim && ti >= nAudio && !this._audioPressed && stim.audioMatch) {
-            AudioEngine.playFeedback('wrong');
+            AudioEngine.playFeedback('wrong', 'audio');
             Renderer.showDimFeedback('audio', 'wrong');
         }
     },

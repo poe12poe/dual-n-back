@@ -495,7 +495,7 @@ const UI = {
         const self = this;
         const prevBtn = document.getElementById('stats-prev');
         const nextBtn = document.getElementById('stats-next');
-        if (prevBtn) prevBtn.onclick = () => { self._statsCurrentIndex++; self._renderStatsPage(panel); };
-        if (nextBtn) nextBtn.onclick = () => { self._statsCurrentIndex--; self._renderStatsPage(panel); };
+        if (prevBtn) prevBtn.onclick = (e) => { e.stopPropagation(); self._statsCurrentIndex++; self._renderStatsPage(panel); };
+        if (nextBtn) nextBtn.onclick = (e) => { e.stopPropagation(); self._statsCurrentIndex--; self._renderStatsPage(panel); };
     },
 };

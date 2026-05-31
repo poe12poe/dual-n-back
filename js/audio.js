@@ -88,8 +88,15 @@ const AudioEngine = {
 
     /**
      * 播放反馈音效
+     * channel: 'position' | 'audio' | undefined
+     *   position correct → 880 Hz
+     *   position wrong   → 220 Hz
+     *   audio   correct  → 660 Hz
+     *   audio   wrong    → 180 Hz
+     *   advance          → 1100 Hz
+     * 同时按两个键时各自用不同频率并发，互不打断
      */
-    async playFeedback(type) {
+    async playFeedback(type, channel) {
         if (!this._ctx) return;
         const running = await this._ensureRunning();
         if (!running) return;
@@ -100,13 +107,13 @@ const AudioEngine = {
         gain.connect(this._ctx.destination);
 
         if (type === 'correct') {
-            osc.frequency.value = 880;
+            osc.frequency.value = (channel === 'audio') ? 660 : 880;
             gain.gain.value = 0.15;
         } else if (type === 'wrong') {
-            osc.frequency.value = 220;
+            osc.frequency.value = (channel === 'audio') ? 180 : 220;
             gain.gain.value = 0.15;
         } else if (type === 'advance') {
-            osc.frequency.value = 660;
+            osc.frequency.value = 1100;
             gain.gain.value = 0.2;
         }
 
